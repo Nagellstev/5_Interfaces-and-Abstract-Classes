@@ -1,7 +1,7 @@
 ﻿using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
-using FlyingObj;
+using FlyingObjects;
 
 class Program
 {
@@ -10,9 +10,9 @@ class Program
         Console.WriteLine("\tFlying objects");
         Console.WriteLine("\n");
 
-        bool endApp = false;
-        bool endFighter = false;
-        while (endApp != true)
+        bool isEndApp = false;
+        bool isEndFighter = false;
+        while (isEndApp != true)
         {
             Console.WriteLine("Choose your fighter:");
             Console.WriteLine("\t1: A bird");
@@ -30,8 +30,8 @@ class Program
             switch (Console.ReadLine())
             {
                 case "1":
-                    endFighter = false;
-                    while (endFighter != true)
+                    isEndFighter = false;
+                    while (isEndFighter != true)
                     {
                         coord.Input(InputX("X"), InputX("Y"), InputX("Z"));
                         bird.FlyTo(coord);
@@ -45,21 +45,21 @@ class Program
                         else
                         {
                             time = TimeSpan.FromHours(bird.GetFlyTime(coord));
-                            Console.WriteLine("Bird's Flight Time: " + /*bird.GetFlyTime(coord)); //*/time.ToString(@"hh\:mm\:ss"));
+                            Console.WriteLine("Bird's Flight Time: " + time.ToString(@"hh\:mm\:ss"));
                             Console.WriteLine("Bird's speed was: " + bird.Speed + "km/h");
                             Console.WriteLine("Covered distance: " + bird.Distance(bird.initCoord, bird.finCoord) + "km");
                         }
                         Console.WriteLine("Press 'n' and 'Enter' to exit or other key to fly further.\n");
                         if (Console.ReadLine() == "n")
                         {
-                            endFighter = true;
+                            isEndFighter = true;
                         }
                         Console.WriteLine("\n");
                     }
                     break;
                 case "2":
-                    endFighter = false;
-                    while (endFighter != true)
+                    isEndFighter = false;
+                    while (isEndFighter != true)
                     {
                         coord.Input(InputX("X"), InputX("Y"), InputX("Z"));
                         plane.FlyTo(coord);
@@ -70,14 +70,14 @@ class Program
                         Console.WriteLine("Press 'n' and 'Enter' to exit or other key to fly further.\n");
                         if (Console.ReadLine() == "n")
                         {
-                            endFighter = true;
+                            isEndFighter = true;
                         }
                         Console.WriteLine("\n");
                     }
                     break;
                 case "3":
-                    endFighter = false;
-                    while (endFighter != true)
+                    isEndFighter = false;
+                    while (isEndFighter != true)
                     {
                         coord.Input(InputX("X"), InputX("Y"), InputX("Z"));
                         drone.FlyTo(coord);
@@ -96,7 +96,7 @@ class Program
                         Console.WriteLine("Press 'n' and 'Enter' to exit or other key to fly further.\n");
                         if (Console.ReadLine() == "n")
                         {
-                            endFighter = true;
+                            isEndFighter = true;
                         }
                         Console.WriteLine("\n");
                     }
@@ -108,7 +108,7 @@ class Program
             Console.WriteLine("Press 'n' and 'Enter' to exit or other key to continue.\n");
             if (Console.ReadLine() == "n")
             {
-                endApp = true;
+                isEndApp = true;
             }
             Console.WriteLine("\n");
         }

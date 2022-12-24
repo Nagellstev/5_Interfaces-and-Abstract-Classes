@@ -34,6 +34,11 @@
             Z = 0;
         }
     }
+    /// <summary>
+    /// Bird's speed is random in rane 0 - 20 km/h
+    /// if speed is 0, time also will be 0
+    /// please, process this while using GetFlyTime in Bird class
+    /// </summary>
     public class Bird : IFlyable
     {
         public Coordinate initCoord = new Coordinate();
@@ -50,9 +55,14 @@
             Random rnd = new Random();
             Speed = rnd.Next(20);
             double time = 0;
-
-            time = Distance(initCoord, finCoord) / Speed;
-
+            if (Speed == 0)
+            {
+                time = 0;
+            }
+            else
+            {
+                time = Distance(initCoord, finCoord) / Speed;
+            }
             return time;
         }
         public double Distance(Coordinate init, Coordinate fin)
@@ -62,12 +72,15 @@
             return d;
         }
     }
+    /// <summary>
+    /// Airplane's initial speed is 200 km/h
+    /// every 10 km speed increases at 10km/h
+    /// </summary>
     public class Airplane : Bird
     {
         public override double GetFlyTime(Coordinate coordinate)
         {
             double speed = 200;
-            //double acceleration = 10;
             double time = 0;
             double d = Distance(initCoord, finCoord);
             double currDist = 0;
@@ -79,17 +92,30 @@
             }
             time += (d - currDist + 10) / speed;
             Speed = d / time;
-            //time = Math.Sqrt(Math.Pow(initSpeed, 2) + 2 * acceleration * d) - initSpeed;
             return time;
         }
     }
+    /// <summary>
+    /// Drones's speed is 20 km/h
+    /// every 10 min of flight drone hovers for 1 min (it processed in formula of time)
+    /// max distance of flight is 100km. If distance > 100, time will be 0
+    /// please, process it while using GetFlyTime in Drone class
+    /// </summary>
     public class Drone : Bird
     {
         public override double GetFlyTime(Coordinate coordinate)
         {
             double speed = 20;
+            double time = 0;
             double d = Distance(initCoord, finCoord);
-            double time = d / speed + Math.Floor(d / speed / 10);
+            if (d > 100)
+            {
+                time = 0;
+            }
+            else
+            {
+                time = d / speed + Math.Floor(d / speed / 10);
+            }
             Speed = d / time;
             return time;
         }

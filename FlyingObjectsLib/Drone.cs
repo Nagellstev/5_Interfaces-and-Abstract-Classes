@@ -8,7 +8,7 @@ namespace FlyingObjects
 {
     /// <summary>
     /// Drones's speed is 20 km/h
-    /// every 10 min of flight drone hovers for 1 min (it processed in formula of time)
+    /// every 10 min of flight drone hovers for 1 min (it is processed in expression of time)
     /// max distance of flight is 100km. If distance > 100, time will be 0
     /// please, process it while using GetFlyTime in Drone class
     /// </summary>
@@ -19,6 +19,7 @@ namespace FlyingObjects
             double speed = 20;
             double time = 0;
             double distance = Distance(initCoord, finCoord);
+
             if (distance > 100)
             {
                 time = 0;

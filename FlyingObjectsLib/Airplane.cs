@@ -18,12 +18,14 @@ namespace FlyingObjects
             double time = 0;
             double distance = Distance(initCoord, finCoord);
             double currDist = 0;
+
             while (currDist < distance)
             {
                 currDist += 10;
                 time += 10 / speed;
                 speed += 10;
             }
+
             time += (distance - currDist + 10) / speed;
             Speed = distance / time;
             return time;

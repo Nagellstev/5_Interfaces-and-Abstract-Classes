@@ -22,6 +22,7 @@ namespace FlyingObjects
             initCoord = finCoord;
             finCoord = coordinate;
         }
+
         public virtual double GetFlyTime(Coordinate coordinate)
         {
             Random rnd = new Random();
@@ -37,6 +38,7 @@ namespace FlyingObjects
             }
             return time;
         }
+
         public double Distance(Coordinate init, Coordinate fin)
         {
             double distance;

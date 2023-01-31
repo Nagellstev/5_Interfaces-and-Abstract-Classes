@@ -7,13 +7,14 @@ using FlyingObjects;
 
 class Program
 {
-    static void Main()
+    public static void Main()
     {
         Console.WriteLine("\tFlying objects");
         Console.WriteLine("\n");
 
         bool isEndApp = false;
         bool isEndFighter = false;
+
         while (isEndApp != true)
         {
             Console.WriteLine("Choose your fighter:");
@@ -37,8 +38,6 @@ class Program
                     {
                         coord.Input(InputX("X"), InputX("Y"), InputX("Z"));
                         bird.FlyTo(coord);
-                        //bird.initCoord.Print();
-                        //bird.finCoord.Print();
                         if (bird.GetFlyTime(coord) == 0)
                         {
                             time = TimeSpan.FromHours(0);
@@ -47,9 +46,9 @@ class Program
                         else
                         {
                             time = TimeSpan.FromHours(bird.GetFlyTime(coord));
-                            Console.WriteLine("Bird's Flight Time: " + time.ToString(@"hh\:mm\:ss"));
-                            Console.WriteLine("Bird's speed was: " + bird.Speed + "km/h");
-                            Console.WriteLine("Covered distance: " + bird.Distance(bird.initCoord, bird.finCoord) + "km");
+                            Console.WriteLine($"Bird's Flight Time: {time.ToString(@"hh\:mm\:ss")}");
+                            Console.WriteLine($"Bird's speed was: {bird.Speed} km/h");
+                            Console.WriteLine($"Covered distance: {bird.Distance(bird.initCoord, bird.finCoord)} km");
                         }
                         Console.WriteLine("Press 'n' and 'Enter' to exit or other key to fly further.\n");
                         if (Console.ReadLine() == "n")
@@ -66,9 +65,9 @@ class Program
                         coord.Input(InputX("X"), InputX("Y"), InputX("Z"));
                         plane.FlyTo(coord);
                         time = TimeSpan.FromHours(plane.GetFlyTime(coord));
-                        Console.WriteLine("Plane's Flight Time: " + time.ToString(@"hh\:mm\:ss"));
-                        Console.WriteLine("Plane's average speed was: " + plane.Speed + "km/h");
-                        Console.WriteLine("Covered distance: " + plane.Distance(plane.initCoord, plane.finCoord) + "km");
+                        Console.WriteLine($"Plane's Flight Time: {time.ToString(@"hh\:mm\:ss")}");
+                        Console.WriteLine($"Plane's average speed was: {plane.Speed} km/h");
+                        Console.WriteLine($"Covered distance: {plane.Distance(plane.initCoord, plane.finCoord)} km");
                         Console.WriteLine("Press 'n' and 'Enter' to exit or other key to fly further.\n");
                         if (Console.ReadLine() == "n")
                         {
@@ -91,9 +90,9 @@ class Program
                         else
                         {
                             time = TimeSpan.FromHours(drone.GetFlyTime(coord));
-                            Console.WriteLine("Drone's Flight Time: " + time.ToString(@"hh\:mm\:ss"));
-                            Console.WriteLine("Drones's average speed was: " + drone.Speed + "km/h");
-                            Console.WriteLine("Covered distance: " + drone.Distance(drone.initCoord, drone.finCoord) + "km");
+                            Console.WriteLine($"Drone's Flight Time: {time.ToString(@"hh\:mm\:ss")}");
+                            Console.WriteLine($"Drones's average speed was: {drone.Speed} km/h");
+                            Console.WriteLine($"Covered distance: {drone.Distance(drone.initCoord, drone.finCoord)} km");
                         }
                         Console.WriteLine("Press 'n' and 'Enter' to exit or other key to fly further.\n");
                         if (Console.ReadLine() == "n")
@@ -115,18 +114,20 @@ class Program
             Console.WriteLine("\n");
         }
     }
-    public static double InputX(string strX)
+
+    private static double InputX(string strX)
     {
-        string XInput;
-        Console.WriteLine("Type " + strX + ", press Enter");
-        XInput = Console.ReadLine();
-        double X = 0;
-        while (!double.TryParse(XInput, out X))
+        string xInput;
+        Console.WriteLine($"Type {strX}, press Enter");
+        xInput = Console.ReadLine();
+        double x = 0;
+        while (!double.TryParse(xInput, out x) || 
+            x <= 0)
         {
-            Console.WriteLine("Input decimal number:");
-            XInput = Console.ReadLine();
+            Console.WriteLine("Input decimal number >= 0:");
+            xInput = Console.ReadLine();
         }
-        return X;
+        return x;
     }
 }
 

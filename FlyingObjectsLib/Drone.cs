@@ -18,7 +18,7 @@ namespace FlyingObjects
         {
             double speed = 20;
             double time = 0;
-            double distance = Distance(initCoord, finCoord);
+            double distance = Distance(InitialCoord, FinalCoord);
 
             if (distance > 100)
             {
@@ -28,7 +28,9 @@ namespace FlyingObjects
             {
                 time = distance / speed + Math.Floor(distance / speed / 10);
             }
+
             Speed = distance / time;
+
             return time;
         }
     }

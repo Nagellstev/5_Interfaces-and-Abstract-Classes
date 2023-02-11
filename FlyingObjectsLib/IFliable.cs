@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace FlyingObjects
 {
-    interface IFlyable
+    public interface IFlyable
     {
-        void FlyTo(Coordinate coordinate);
-        double GetFlyTime(Coordinate coordinate);
+        public void FlyTo(Coordinate coordinate);
+
+        public double GetFlyTime(Coordinate coordinate);
     }
 }

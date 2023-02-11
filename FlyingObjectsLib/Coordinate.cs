@@ -37,5 +37,19 @@ namespace FlyingObjects
             Y = 0;
             Z = 0;
         }
+
+        public bool IsValid() 
+        { 
+            if (X < 0 ||
+                Y < 0 ||
+                Z < 0) 
+            { 
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
     }
 }

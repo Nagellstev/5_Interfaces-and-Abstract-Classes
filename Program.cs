@@ -24,7 +24,7 @@ public class Program
             Console.WriteLine("\t4: Exit");
             Console.WriteLine("And type number: ");
 
-            Coordinate coordinates = new Coordinate();
+            //Coordinate coordinates = new Coordinate();
             TimeSpan time;
 
             Bird bird = new Bird();
@@ -38,15 +38,15 @@ public class Program
 
                     while (isEndFighter != true)
                     {
-                        coordinates.Input(InputX("X"), InputX("Y"), InputX("Z"));
+                        Coordinate coordinates = new Coordinate(InputX("X"), InputX("Y"), InputX("Z"));
 
-                        if (coordinates.IsValid())
+                        if (coordinates.IsValid)
                         {
                             bird.FlyTo(coordinates);
                         }
                         else
                         {
-                            Console.WriteLine("Coordinates is not valid!");
+                            Console.WriteLine("Coordinates is not valid!\n");
                             break;
                         }
 
@@ -61,7 +61,8 @@ public class Program
 
                             Console.WriteLine($"Bird's Flight Time: {time.ToString(@"hh\:mm\:ss")}");
                             Console.WriteLine($"Bird's speed was: {bird.Speed} km/h");
-                            Console.WriteLine($"Covered distance: {bird.Distance(bird.InitialCoord, bird.FinalCoord)} km");
+                            Console.WriteLine($"Covered distance: {bird.Distance(bird.InitialCoordinates, bird.FinalCoordinates)} km");
+                            Console.WriteLine($"Final coordinates: {bird.Distance(bird.InitialCoordinates, bird.FinalCoordinates)} km");
                         }
 
                         Console.WriteLine("\n");
@@ -81,15 +82,15 @@ public class Program
 
                     while (isEndFighter != true)
                     {
-                        coordinates.Input(InputX("X"), InputX("Y"), InputX("Z"));
+                        Coordinate coordinates = new Coordinate(InputX("X"), InputX("Y"), InputX("Z"));
 
-                        if (coordinates.IsValid())
+                        if (coordinates.IsValid)
                         {
                             plane.FlyTo(coordinates);
                         }
                         else
                         {
-                            Console.WriteLine("Coordinates is not valid!");
+                            Console.WriteLine("Coordinates is not valid!\n");
                             break;
                         }
 
@@ -97,7 +98,7 @@ public class Program
 
                         Console.WriteLine($"Plane's Flight Time: {time.ToString(@"hh\:mm\:ss")}");
                         Console.WriteLine($"Plane's average speed was: {plane.Speed} km/h");
-                        Console.WriteLine($"Covered distance: {plane.Distance(plane.InitialCoord, plane.FinalCoord)} km");
+                        Console.WriteLine($"Covered distance: {plane.Distance(plane.InitialCoordinates, plane.FinalCoordinates)} km");
                         Console.WriteLine("\n");
                         Console.WriteLine("Press 'q' and 'Enter' to go to the first menu or other key to fly further.\n");
 
@@ -115,15 +116,15 @@ public class Program
 
                     while (isEndFighter != true)
                     {
-                        coordinates.Input(InputX("X"), InputX("Y"), InputX("Z"));
+                        Coordinate coordinates = new Coordinate(InputX("X"), InputX("Y"), InputX("Z"));
 
-                        if (coordinates.IsValid())
+                        if (coordinates.IsValid)
                         {
                             drone.FlyTo(coordinates);
                         }
                         else
                         {
-                            Console.WriteLine("Coordinates is not valid!");
+                            Console.WriteLine("Coordinates is not valid!\n");
                             break;
                         }
 
@@ -140,7 +141,7 @@ public class Program
                             Console.WriteLine($"Drone's Flight Time: {time.ToString(@"hh\:mm\:ss")}");
                             Console.WriteLine($"Drones's average speed was: {drone.Speed} km/h");
                             Console.WriteLine("\n");
-                            Console.WriteLine($"Covered distance: {drone.Distance(drone.InitialCoord, drone.FinalCoord)} km");
+                            Console.WriteLine($"Covered distance: {drone.Distance(drone.InitialCoordinates, drone.FinalCoordinates)} km");
                         }
 
                         Console.WriteLine("Press 'q' and 'Enter' to go to the first menu or other key to fly further.\n");
@@ -165,7 +166,7 @@ public class Program
             }
         }
     }
-
+    
     private static double InputX(string inputCoordinate)
     {
         string xInput;
@@ -175,10 +176,9 @@ public class Program
 
         double x = 0;
 
-        while (!double.TryParse(xInput, out x) || 
-            x < 0)
+        while (!double.TryParse(xInput, out x))
         {
-            Console.WriteLine("Input decimal number >= 0:");
+            Console.WriteLine("Input decimal number:");
             xInput = Console.ReadLine();
         }
 

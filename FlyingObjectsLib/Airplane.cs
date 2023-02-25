@@ -16,17 +16,17 @@ namespace FlyingObjects
         {
             double speed = 200;
             double time = 0;
-            double distance = Distance(InitialCoord, FinalCoord);
-            double currentDist = 0;
+            double distance = Distance(InitialCoordinates, FinalCoordinates);
+            double currentDistance = 0;
 
-            while (currentDist < distance)
+            while (currentDistance < distance)
             {
-                currentDist += 10;
+                currentDistance += 10;
                 time += 10 / speed;
                 speed += 10;
             }
 
-            time += (distance - currentDist + 10) / speed;
+            time += (distance - currentDistance + 10) / speed;
             Speed = distance / time;
 
             return time;

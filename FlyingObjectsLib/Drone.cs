@@ -18,7 +18,7 @@ namespace FlyingObjects
         {
             double speed = 20;
             double time = 0;
-            double distance = Distance(InitialCoord, FinalCoord);
+            double distance = Distance(InitialCoordinates, FinalCoordinates);
 
             if (distance > 100)
             {

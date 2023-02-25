@@ -13,14 +13,14 @@ namespace FlyingObjects
     /// </summary>
     public class Bird : IFlyable
     {
-        public Coordinate InitialCoord = new Coordinate();
-        public Coordinate FinalCoord = new Coordinate();
+        public Coordinate InitialCoordinates = new Coordinate();
+        public Coordinate FinalCoordinates = new Coordinate();
         public double Speed;
 
         public void FlyTo(Coordinate coordinate)
         {
-            InitialCoord = FinalCoord;
-            FinalCoord = coordinate;
+            InitialCoordinates = FinalCoordinates;
+            FinalCoordinates = coordinate;
         }
 
         public virtual double GetFlyTime(Coordinate coordinate)
@@ -35,16 +35,16 @@ namespace FlyingObjects
             }
             else
             {
-                time = Distance(InitialCoord, FinalCoord) / Speed;
+                time = Distance(InitialCoordinates, FinalCoordinates) / Speed;
             }
 
             return time;
         }
 
-        public double Distance(Coordinate init, Coordinate fin)
+        public double Distance(Coordinate initial, Coordinate final)
         {
             double distance;
-            distance = Math.Sqrt(Math.Pow(fin.X - init.X, 2) + Math.Pow(fin.Y - init.Y, 2) + Math.Pow(fin.Z - init.Z, 2));
+            distance = Math.Sqrt(Math.Pow(final.X - initial.X, 2) + Math.Pow(final.Y - initial.Y, 2) + Math.Pow(final.Z - initial.Z, 2));
 
             return Math.Round(distance, 3);
         }
